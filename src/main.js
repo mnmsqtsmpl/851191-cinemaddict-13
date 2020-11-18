@@ -1,9 +1,10 @@
 import {createProfileTemplate} from "./view/profile.js";
 import {createSiteMenuTemplate} from "./view/site-menu.js";
 import {createSortTemplate} from "./view/sort.js";
-import {createFilmCardTemplate} from "./view/film-card.js";
 import {createShowMoreButtonTemplate} from "./view/show-more-button.js";
 import {createFilmsCountTemplate} from "./view/films-count.js";
+import {createFilmsTemplate} from "./view/films.js";
+import {createFilmCardTemplate} from "./view/film-card.js";
 
 const CARDS_COUNT = 5;
 
@@ -17,11 +18,16 @@ const siteFooterElement = siteBodyElement.querySelector(`.footer`);
 render(siteHeaderElement, createProfileTemplate(), `beforeend`);
 render(siteMainElement, createSiteMenuTemplate(), `afterbegin`);
 render(siteMainElement, createSortTemplate(), `beforeend`);
+render(siteMainElement, createFilmsTemplate(), `beforeend`);
+
+const filmsSection = siteMainElement.querySelector(`.films-list`);
+const filmListContainer = filmsSection.querySelector(`.films-list__container`);
 
 for (let i = 0; i < CARDS_COUNT; i++) {
-  render(siteMainElement, createFilmCardTemplate(), `beforeend`);
+  render(filmListContainer, createFilmCardTemplate(), `beforeend`);
 }
 
-render(siteMainElement, createShowMoreButtonTemplate(), `beforeend`);
+render(filmsSection, createShowMoreButtonTemplate(), `beforeend`);
+
 render(siteFooterElement, createFilmsCountTemplate(), `beforeend`);
 
